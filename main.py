@@ -25,6 +25,9 @@ form = """
                     width: 540px;
                     height: 120px;
                 }}
+                error {{
+                    color: #ff0000;
+                }}
             </style>
         </head>
         <body>
@@ -38,22 +41,13 @@ form = """
     </html>
 """
 
-def is_integer(num):
-    try:
-        int(num)
-        return True
-    except ValueError:
-        return False
 
 @app.route("/", methods=["POST"])
 def encrypt():
     rot = request.form['rot']
     text = request.form['text']
 
-    """
-    if not is_integer(rot):
-        return error
-    """
+
     rot = int(rot)
     encrypted = rotate_string(text, rot)
     #encrypt_wrap = "<h1>encrypted</h1>"
